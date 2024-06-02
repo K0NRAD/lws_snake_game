@@ -1,0 +1,83 @@
+@font-face {
+    font-family: "Bungee";
+    src: url("/assets/font/Bungee/Bungee-Regular.ttf");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: radial-gradient(circle at 20%, #932594, #f233ef, #339cf2, #33f286);
+    background-size: 500%, 500%;
+    animation: gradient-bg 20s ease-in-out infinite;}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+canvas {
+    background: transparent;
+}
+
+.scores {
+    margin-top: 40px;
+    font-family: "Bungee";
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: silver;
+}
+.scores .score,
+.scores .highscore {
+    text-align: center;
+}
+
+#gamepad {
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#gamepad::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+@keyframes gradient-bg {
+    0% {
+        background-position: 0, 30%;
+    }
+
+    25% {
+        background-position: 50%, 90%;
+    }
+
+    50% {
+        background-position: 100%, 50%;
+    }
+
+    75% {
+        background-position: 50%, 10%;
+    }
+
+    100% {
+        background-position: 0, 30%;
+    }
+}
