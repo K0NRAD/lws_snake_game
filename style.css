@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Bungee";
-    src: url("/assets/font/Bungee/Bungee-Regular.ttf");
+    src: url("./assets/font/Bungee/Bungee-Regular.ttf");
 }
 
 * {
