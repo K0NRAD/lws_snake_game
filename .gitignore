@@ -104,17 +104,3 @@ out
 .history
 .ionide
 
-# Web
-*.asp
-*.cer
-*.csr
-*.css
-*.htm
-*.html
-*.js
-*.jsp
-*.php
-*.rss
-*.wasm
-*.wat
-*.xhtml
