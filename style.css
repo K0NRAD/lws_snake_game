@@ -20,24 +20,29 @@ body {
 
 .container {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: center;    
+    flex-wrap: wrap;
+    width: 100vw;
 }
 
-canvas {
-    background: transparent;
-}
 
 .scores {
-    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    width: 850px;
+}
+.score {
+    text-align: center;
     font-family: "Bungee";
     font-size: 2.5rem;
     font-weight: 800;
     color: silver;
+    width: 40%;
 }
-.scores .score,
-.scores .highscore {
-    text-align: center;
+
+canvas {
+    background: transparent;
 }
 
 #gamepad {

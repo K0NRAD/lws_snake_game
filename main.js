@@ -4,11 +4,11 @@ import snakeLogo from "./assets/images/snake-logo.png";
 window.onload = () => {
     const canvas = document.getElementById("gamepad");
 
-    const scoreValue = document.querySelector(".score");
-    const highscoreValue = document.querySelector(".highscore");
+    const scoreValue = document.getElementById("score");
+    const highscoreValue = document.getElementById("highscore");
 
-    const CANVAS_WIDTH = 900;
-    const CANVAS_HEIGHT = 900;
+    const CANVAS_WIDTH = 850;
+    const CANVAS_HEIGHT = 850;
     const GAME_COLUMNS = 25;
     const GAME_ROWS = 25;
 
