@@ -2,6 +2,15 @@ import snakeSprite from "./assets/images/snake-sprite.png";
 import snakeLogo from "./assets/images/snake-logo.png";
 
 window.onload = () => {
+    // - - - -  player input
+    const modal = document.querySelector("[data-modal]");
+    const dataCloseModal = document.querySelector("[data-close-modal]");
+
+    dataCloseModal.addEventListener("click", () => {
+        modal.close();
+    });
+
+    // - - - - snake game
     const canvas = document.getElementById("gamepad");
 
     const scoreValue = document.getElementById("score");
@@ -11,6 +20,7 @@ window.onload = () => {
     const CANVAS_HEIGHT = 850;
     const GAME_COLUMNS = 25;
     const GAME_ROWS = 25;
+    const MAX_GAME_PER_PLAYER = 3;
 
     const context = canvas.getContext("2d");
 
@@ -22,6 +32,8 @@ window.onload = () => {
     let frameCount = 0;
 
     let initialized = false;
+
+    let gamePerPlayer = 0;
 
     // Images
     let tileImage;
@@ -65,7 +77,6 @@ window.onload = () => {
                 [0, 1], // down
                 [-1, 0], // left
             ];
-            this.init(0, 0, 1, 10, 1);
         }
 
         init(x, y, direction, speed, nSegments) {
@@ -83,6 +94,7 @@ window.onload = () => {
 
         grow() {
             this.growSegments++;
+            this.speed++;
         }
 
         tryMove(dt) {
@@ -147,10 +159,11 @@ window.onload = () => {
     };
 
     const newGame = () => {
-        snake.init(10, 10, 1, 10, 4);
+        snake.init(10, 10, 1, 5, 4 );
         level.generate();
         addApple();
         score = 0;
+        gamePerPlayer++;
         scoreValue.textContent = `${score}`;
         gameover = false;
     };
@@ -260,7 +273,10 @@ window.onload = () => {
 
             const logo = loadImage(snakeLogo);
             context.drawImage(logo, CANVAS_WIDTH / 2 - 200, 150, 400, 400);
-
+            if (gamePerPlayer > MAX_GAME_PER_PLAYER) {
+                modal.showModal();
+                gamePerPlayer = 0;
+            }
             context.fillStyle = "#eee";
             context.font = "36px Bungee";
             drawCenterText("Press any key to start!", 0, CANVAS_HEIGHT / 1.5, CANVAS_WIDTH);
@@ -351,6 +367,9 @@ window.onload = () => {
     const randRange = (low, high) => Math.floor(low + Math.random() * (high - low + 1));
 
     const onKeyDown = (e) => {
+        if (modal.open) {
+            return;
+        }
         if (gameover) {
             tryNewGame();
         } else {

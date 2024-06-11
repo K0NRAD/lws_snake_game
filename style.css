@@ -10,21 +10,90 @@
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-image: radial-gradient(circle at 20%, #932594, #f233ef, #339cf2, #33f286);
+    background: radial-gradient(circle at 20%, #932594, #f233ef, #339cf2, #33f286);
     background-size: 500%, 500%;
-    animation: gradient-bg 20s ease-in-out infinite;}
+    animation: gradient-bg 20s ease-in-out infinite;
+}
 
 .container {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    width: 100vw;
 }
 
+.modal-content {
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(238, 238, 238, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+.modal-content h2 {
+    color: white;
+    font-size: 2rem;
+    letter-spacing: 10px;
+    text-align: center;
+}
+
+.modal-content .close-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: -10px;
+    top: -10px;
+    color: rgb(200, 50, 50);
+    border: 1px solid #333;
+    border-radius: 50%;
+    background-color: rgba(238, 238, 238, 0.5);
+    font-size: 1.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-content .close-modal:hover {
+    scale: 1.5;
+}
+
+#playerform {
+    width: 100%;
+}
+
+#playerform .form-group {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin: 10px 0;
+}
+
+#playerform .form-group label {
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+#playerform .form-group input {
+    height: 1.8rem;
+    border-radius: 8px;
+    background-color: rgba(238, 238, 238, 0.6);
+}
+
+#playerform button {
+    width: 100%;
+    height: 1.8rem;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    color: white;
+    background-color: rgba(100, 20, 150, 0.8);
+}
 
 .scores {
     display: flex;
@@ -32,6 +101,7 @@ body {
     justify-content: center;
     width: 850px;
 }
+
 .score {
     text-align: center;
     font-family: "Bungee";
@@ -43,6 +113,7 @@ body {
 
 canvas {
     background: transparent;
+    cursor: none;
 }
 
 #gamepad {
