@@ -1,10 +1,12 @@
 import snakeSprite from "./assets/images/snake-sprite.png";
 import snakeLogo from "./assets/images/snake-logo.png";
+import gameService from "./game_service";
 
 window.onload = () => {
     // - - - -  player input
     const modal = document.querySelector("[data-modal]");
     const dataCloseModal = document.querySelector("[data-close-modal]");
+    const dataHighscoreModal = document.querySelector("[data-highscore-modal]");
 
     dataCloseModal.addEventListener("click", () => {
         modal.close();
@@ -135,10 +137,13 @@ window.onload = () => {
     const level = new Level(GAME_COLUMNS, GAME_ROWS, CANVAS_WIDTH / GAME_COLUMNS, CANVAS_HEIGHT / GAME_ROWS);
 
     let score = 0;
-    let highscore = 0;
+    let highscore = gameService.getItem("highscore").score;
+    let currentHighscore = 0;
     let gameover = true;
     let gameovertime = 1;
     const gameoverdelay = 0.5;
+
+    highscoreValue.textContent = `${highscore}`;
 
     const init = () => {
         tileImage = loadImage(snakeSprite);
@@ -236,6 +241,10 @@ window.onload = () => {
                             scoreValue.textContent = `${score}`;
                             if (score > highscore) {
                                 highscoreValue.textContent = `${score}`;
+                                gameService.setItem("highscore", {score:score});
+                            }
+                            if(score > currentHighscore) {
+                                currentHighscore = score
                             }
                         }
                     }
@@ -274,8 +283,10 @@ window.onload = () => {
             const logo = loadImage(snakeLogo);
             context.drawImage(logo, CANVAS_WIDTH / 2 - 200, 150, 400, 400);
             if (gamePerPlayer > MAX_GAME_PER_PLAYER) {
+                dataHighscoreModal.textContent = `${currentHighscore}`;
                 modal.showModal();
                 gamePerPlayer = 0;
+                currentHighscore = 0;
             }
             context.fillStyle = "#eee";
             context.font = "36px Bungee";
@@ -387,11 +398,10 @@ window.onload = () => {
                     if (snake.direction !== 0) snake.direction = 2;
                     break;
                 case 32:
-                    snake.grow();
+                    
                     break;
             }
         }
     };
-
     init();
 };
